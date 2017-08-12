@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div id="box">
+        <div id="header">
+            <ul>
+                <li class="active">新闻</li>
+                <li>科技</li>
+            </ul>
+            <span></span>
+        </div>
+        <div id="content">
+            <div class="list1">
+                <ul>
+                    <li>新闻内容新闻内容</li>
+                    <li>新闻内容新闻内容</li>
+                    <li>新闻内容新闻内容</li>
+                    <li>新闻内容新闻内容</li>
+                    <li>新闻内容新闻内容</li>
+                    <li>新闻内容新闻内容</li>
+                </ul>
+                <a href="javascript:;">更多</a>
+            </div>
+            <div class="list2">
+                <ul>
+                    <li>新闻内容新闻内容</li>
+                    <li>新闻内容新闻内容</li>
+                    <li>新闻内容新闻内容</li>
+                    <li>新闻内容新闻内容</li>
+                    <li>新闻内容新闻内容</li>
+                    <li>新闻内容新闻内容</li>
+                </ul>
+                <a href="javascript:;">更多</a>
+            </div>
+        </div>
+    </div>
+    <script src="js/zepto.min.js"></script>
+    <!--<script src="js/zepto.js"></script>-->
+    <script src="js/touch.js"></script>
+    <script>
+        $(function () {
+            var index=0;
+            $('#header li').tap(function () {
+                index=$(this).index();
+                $(this).addClass('active').siblings().removeClass('active');
+                $('#header span').css({
+                    transform:'translateX('+index*100+'%)',
+                    transition:'all 0.25s linear'
+                });
+
+                $('#content').css({
+                    transform:'translateX('+ -index*50 +'%)',
+                    transition:'all 0.25s linear'
+                });
+            })
+
+            $('#content').swipeLeft(function () {
+                changeList(1);
+            });
+            $('#content').swipeRight(function () {
+                changeList(0);
+            });
+            function changeList(index) {
+                $('#header li').eq(index).addClass('active').siblings().removeClass('active');
+                $('#header span').css({
+                    transform:'translateX('+index*100+'%)',
+                    transition:'all 0.25s linear'
+                });
+
+                $('#content').css({
+                    transform:'translateX('+ -index*50 +'%)',
+                    transition:'all 0.25s linear'
+                });
+            }
+        })
+    </script>
+</body>
+</html>
